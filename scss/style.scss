@@ -3,7 +3,7 @@ $primary-pink: #FFB6C1;
 $primary-blue: #4A90E2;
 $dark-pink: #FF69B4;
 $light-blue: #F0F8FF;
-$text-dark: #666;
+$text-dark: #666; // #333から#666に変更
 $text-light: #666;
 $background-blue: #E8F4FD;
 
@@ -49,8 +49,68 @@ body {
   overflow-x: hidden;
 }
 
+// ヘッダー（デスクトップ版）
+.desktop-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1002;
+  padding: 1rem 2rem;
+  display: none; // デフォルトは非表示
+  
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $text-dark;
+      text-decoration: none;
+      letter-spacing: 0.1rem;
+    }
+    
+    .header-nav {
+      display: flex;
+      gap: 2rem;
+      
+      a {
+        text-decoration: none;
+        color: $text-dark;
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: $primary-blue;
+        }
+      }
+    }
+    
+    .header-contact {
+      @include flex-center;
+      @include button-hover($primary-pink, $dark-pink);
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      text-decoration: none;
+      
+      i {
+        font-size: 16px;
+        color: white;
+      }
+    }
+  }
+}
 
-// ナビゲーション関連
+// ナビゲーション関連（モバイル版）
 .top-nav-container {
   position: fixed;
   top: 20px;
@@ -89,7 +149,7 @@ body {
     .hamburger-line {
       width: 100%;
       height: 3px;
-      background-color: $text-dark;
+      background-color: #666; // #333から#666に変更
       transition: all 0.3s ease;
       transform-origin: center;
     }
@@ -350,13 +410,14 @@ body {
     // テキスト - 真ん中右寄り（ゴシック体）
     .portfolio-text {
       font-family: 'Arial', sans-serif; // ゴシック体に変更
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       letter-spacing: 0.1rem;
       opacity: 0;
       transform: translateY(50px);
-      line-height: 1.6;
-      max-width: 400px;
-      white-space: nowrap; // 改行を許可
+      line-height: 1.7;
+      max-width: 480px; // 幅を広げる
+      white-space: normal; // 改行を許可
+      color: #666; // #333から#666に変更
     }
   }
   
@@ -536,7 +597,7 @@ body {
   background-color: #ffffff;
   padding: 5rem 0; // 左右のパディングを削除
   text-align: center;
-  color: #666;
+  color: $text-dark;
   position: relative;
   width: 100%;
   
@@ -614,7 +675,14 @@ body {
 
 // レスポンシブデザイン
 @media (max-width: 768px) {
+  // デスクトップヘッダーを非表示
+  .desktop-header {
+    display: none !important;
+  }
+  
+  // モバイルナビを表示
   .top-nav-container {
+    display: flex;
     gap: 10px;
     
     .header-gmail-icon {
@@ -662,10 +730,11 @@ body {
       }
       
       .portfolio-text {
-        font-size: 1.2rem;
-        max-width: 300px;
+        font-size: 1.1rem;
+        max-width: 350px;
         text-align: center;
         white-space: normal; // 改行を許可
+        line-height: 1.6;
       }
     }
   }
@@ -723,11 +792,18 @@ body {
 }
 
 @media (min-width: 769px) {
+  // デスクトップヘッダーを表示
+  .desktop-header {
+    display: block !important;
+  }
+  
+  // モバイルナビを非表示（ただしアイコンは残す）
   .hamburger-menu {
     display: none;
   }
   
-  .header-gmail-icon {
-    display: flex;
+  // デスクトップ版ではスクロールインジケーターを下に移動
+  .scroll-indicator {
+    top: 60px; // ヘッダー分下げる
   }
 }

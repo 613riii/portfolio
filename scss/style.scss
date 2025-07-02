@@ -3,7 +3,7 @@ $primary-pink: #FFB6C1;
 $primary-blue: #4A90E2;
 $dark-pink: #FF69B4;
 $light-blue: #F0F8FF;
-$text-dark: #333;
+$text-dark: #666;
 $text-light: #666;
 $background-blue: #E8F4FD;
 
@@ -536,7 +536,7 @@ body {
   background-color: #ffffff;
   padding: 5rem 0; // 左右のパディングを削除
   text-align: center;
-  color: $text-dark;
+  color: #666;
   position: relative;
   width: 100%;
   

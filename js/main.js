@@ -78,18 +78,6 @@ document.querySelector('.logo')?.addEventListener('click', (e) => {
 // GSAP登録
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// スクロールプログレス
-gsap.to(".scroll-progress", {
-    width: "100%",
-    ease: "none",
-    scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 0.3
-    }
-});
-
 // ヒーローセクションアニメーション（最強フワッと感）
 const heroTl = gsap.timeline({ delay: 0.2 }); // 少し遅延を追加
 
@@ -160,7 +148,7 @@ gsap.utils.toArray(".work-item").forEach((item, index) => {
     });
 });
 
-// Aboutセクションアニメーション（時差を付けて）
+// Aboutセクションアニメーション（修正版）
 gsap.to(".about-image", {
     opacity: 1,
     x: 0,
@@ -174,12 +162,12 @@ gsap.to(".about-image", {
     }
 });
 
-// 右側は遅れて表示
+// プロフィールテキスト部分
 gsap.to(".about-right", {
     opacity: 1,
     x: 0,
     duration: 1.2,
-    delay: 0.5,
+    delay: 0.2, // 短縮
     ease: "power2.out",
     scrollTrigger: {
         trigger: ".about-section",
@@ -189,30 +177,45 @@ gsap.to(".about-right", {
     }
 });
 
-// スキルリストアニメーション（時差を付けて）
+// スキルタイトル（新規追加）
+gsap.to(".skills-title", {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    delay: 0.4, // プロフィールテキストの直後
+    ease: "power2.out",
+    scrollTrigger: {
+        trigger: ".about-section",
+        start: "top 70%",
+        end: "bottom 30%",
+        toggleActions: "play none none reverse"
+    }
+});
+
+// スキルリストアニメーション（修正版）
 gsap.utils.toArray(".skills-list li").forEach((skill, index) => {
     gsap.to(skill, {
         opacity: 1,
         y: 0,
         duration: 0.6,
-        delay: index * 0.1 + 1.0,
+        delay: index * 0.08 + 0.6, // 大幅短縮
         ease: "power2.out",
         scrollTrigger: {
-            trigger: ".skills",
-            start: "top 80%",
-            end: "bottom 20%",
+            trigger: ".about-section",
+            start: "top 70%",
+            end: "bottom 30%",
             toggleActions: "play none none reverse"
         }
     });
 });
 
-// Contactテキストアニメーション
+// Contactテキストアニメーション（修正版）
 gsap.utils.toArray(".contact-text, .contact-description").forEach((text, index) => {
     gsap.to(text, {
         opacity: 1,
         y: 0,
         duration: 0.8,
-        delay: index * 0.3,
+        delay: index * 0.15, // 短縮
         ease: "power2.out",
         scrollTrigger: {
             trigger: text,
@@ -223,16 +226,16 @@ gsap.utils.toArray(".contact-text, .contact-description").forEach((text, index) 
     });
 });
 
-// Contactアイコンアニメーション
+// Contactアイコンアニメーション（修正版）
 gsap.utils.toArray(".contact-icon").forEach((icon, index) => {
     gsap.to(icon, {
         opacity: 1,
         scale: 1,
         duration: 0.8,
-        delay: index * 0.2 + 0.5,
+        delay: index * 0.1 + 0.25, // 大幅短縮
         ease: "back.out(1.7)",
         scrollTrigger: {
-            trigger: icon,
+            trigger: ".contact-section",
             start: "top 85%",
             end: "bottom 15%",
             toggleActions: "play none none reverse"
@@ -313,6 +316,12 @@ window.addEventListener('load', () => {
         opacity: 0,
         scale: 0.3, // より小さく開始
         rotation: -10 // 少し回転
+    });
+    
+    // スキルタイトルの初期状態（新規追加）
+    gsap.set(".skills-title", {
+        opacity: 0,
+        y: 20
     });
     
     // その他の初期状態

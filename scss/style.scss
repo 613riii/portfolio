@@ -49,7 +49,7 @@ body {
   overflow-x: hidden;
 }
 
-// ヘッダー（デスクトップ版）
+// ヘッダー（デスクトップ版）- 修正版
 .desktop-header {
   position: fixed;
   top: 0;
@@ -65,21 +65,24 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; // 右寄せに変更
     align-items: center;
+    position: relative; // 相対位置指定
     
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: $text-dark;
-      text-decoration: none;
-      letter-spacing: 0.1rem;
-    }
+    // ロゴを削除（コメントアウト）
+    // .logo {
+    //   font-family: 'Playfair Display', serif;
+    //   font-size: 1.5rem;
+    //   font-weight: 700;
+    //   color: $text-dark;
+    //   text-decoration: none;
+    //   letter-spacing: 0.1rem;
+    // }
     
     .header-nav {
       display: flex;
-      gap: 2rem;
+      gap: 3rem; // ギャップを少し広げる
+      margin-right: 4rem; // メールアイコンとの間にスペースを追加
       
       a {
         text-decoration: none;
@@ -101,6 +104,8 @@ body {
       height: 35px;
       border-radius: 50%;
       text-decoration: none;
+      position: absolute; // 絶対位置指定
+      right: 0; // 右端に配置
       
       i {
         font-size: 16px;
@@ -109,7 +114,6 @@ body {
     }
   }
 }
-
 // ナビゲーション関連（モバイル版）
 .top-nav-container {
   position: fixed;

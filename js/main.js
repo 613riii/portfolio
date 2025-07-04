@@ -62,18 +62,18 @@ document.querySelectorAll('.header-nav a').forEach(link => {
     });
 });
 
-// ロゴクリックでトップに戻る
-document.querySelector('.logo')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    gsap.to(window, {
-        duration: 1.5,
-        scrollTo: {
-            y: 0,
-            offsetY: 0
-        },
-        ease: "power2.inOut"
-    });
-});
+// // ロゴクリックでトップに戻る
+// document.querySelector('.logo')?.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     gsap.to(window, {
+//         duration: 1.5,
+//         scrollTo: {
+//             y: 0,
+//             offsetY: 0
+//         },
+//         ease: "power2.inOut"
+//     });
+// });
 
 // GSAP登録
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
